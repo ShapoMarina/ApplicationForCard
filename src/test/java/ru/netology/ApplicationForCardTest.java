@@ -14,10 +14,10 @@ import static com.codeborne.selenide.files.DownloadActions.click;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ApplicationForCardTest {
-    private WebDriver driver;
+    WebDriver driver;
 
     @BeforeAll
-    static void setupClass() {
+    static void setUpAll() {
         WebDriverManager.chromedriver().setup();
     }
 
@@ -29,14 +29,14 @@ public class ApplicationForCardTest {
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
         options.addArguments("--headless");
-        driver = new ChromeDriver(options);;
+        driver = new ChromeDriver(options);
+        ;
 
     }
 
     @AfterEach
     void tearDown() {
         driver.quit();
-        driver = null;
     }
 
     @Test
@@ -48,7 +48,7 @@ public class ApplicationForCardTest {
         driver.findElement(By.className("button__text")).click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 
 
@@ -61,7 +61,7 @@ public class ApplicationForCardTest {
         driver.findElement(By.className("button__text")).click();
         String expected = "Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время.";
         String actual = driver.findElement(By.cssSelector("[data-test-id=order-success]")).getText().trim();
-        assertEquals(expected,actual);
+        assertEquals(expected, actual);
     }
 }
 
